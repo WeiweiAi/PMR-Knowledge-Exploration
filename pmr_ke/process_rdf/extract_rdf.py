@@ -17,7 +17,7 @@ from typing import Optional
 import contextlib
 from rdflib import Graph, Namespace, URIRef, Literal
 from rdflib.namespace import XSD
-from utilities import get_file_buffer
+from .utilities import get_file_buffer
 
 
 def read_rdf_file(rdf_file_path: str) -> Optional[Graph]:

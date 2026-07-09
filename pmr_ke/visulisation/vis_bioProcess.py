@@ -1,7 +1,7 @@
 import json
 from graphviz import Digraph
 import itertools
-from typing import Optional
+from typing import Dict, Optional
 
 def clean_id(uri):
     return uri.split('/')[-1]
@@ -20,7 +20,7 @@ def get_ontology_label(ontology_list):
 def get_ontology_id(ontology_list):
     return "_".join(sorted([clean_id(uri) for uri in ontology_list]))
 
-def build_bioprocess_graph(json_file_path: str,  output_file: Optional[str] = None) -> Digraph:
+def build_bioprocess_graph(json_file_path: str | Dict,  output_file: Optional[str] = None) -> Digraph:
     """
     Builds a directed graph representing biological processes from a JSON file.
 
@@ -33,9 +33,11 @@ def build_bioprocess_graph(json_file_path: str,  output_file: Optional[str] = No
         Digraph: The built GraphViz graph.
     
     """
-
-    with open(json_file_path, "r") as f:
-        json_data = json.load(f)
+    if isinstance(json_file_path, dict):
+        json_data = json_file_path
+    else:
+        with open(json_file_path, "r") as f:
+            json_data = json.load(f)
 
     dot = Digraph(name="Biological_Processes", format="png")
     

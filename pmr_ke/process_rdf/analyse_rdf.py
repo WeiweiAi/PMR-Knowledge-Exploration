@@ -1,8 +1,8 @@
 import os
 from rdflib import Graph, URIRef, Literal
 from typing import Dict, Optional, List, Tuple, Any
-from utilities import  qualifier_term, cellml_term, sedml_term, ontology_term_bio,local_id
-from extract_rdf import read_rdf_file
+from .utilities import qualifier_term, cellml_term, sedml_term, ontology_term_bio, local_id
+from .extract_rdf import read_rdf_file
 from qdrant_client import QdrantClient, models
 from collections import deque
 import json
